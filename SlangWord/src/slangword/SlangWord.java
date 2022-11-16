@@ -17,7 +17,7 @@ public class SlangWord {
 		}
 	}
 	public void getLine() {
-		//
+		
 	}
 	
 	
