@@ -48,6 +48,8 @@ public class MenuTest {
 		case 1:
 			menuFunction.searchWord();
 			break;
+		case 2:
+			menuFunction.searchDefintion();
 
 		default:
 			break;

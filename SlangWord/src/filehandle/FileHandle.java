@@ -15,7 +15,7 @@ import java.util.Scanner;
 import slangword.SlangWord;
 
 public class FileHandle {
-	SlangWord slangWordList = new SlangWord();
+	public SlangWord slangWordList = new SlangWord();
 	
 	public void LoadFileData(String filename) {
 		
@@ -30,9 +30,15 @@ public class FileHandle {
 			String line =null;
 			try {
 				while((line = bufferedReader.readLine())!=null) {
-					if(line.isEmpty()) {
+					
+					//gặp dòng trống thì bỏ qua 
+					if(line.isEmpty()) {  
 						continue; 
 				}
+					// găpj những từ không đúng định dạng thì bỏ qua
+					if(!(line.contains("`"))) {
+						continue; 
+					}
 					String[] params = line.split("`");
 					slangWordList.add(params[0], params[1]);
 					
@@ -82,6 +88,9 @@ public class FileHandle {
 	public String getas(String word) {
 		
 		return (this.slangWordList.get(word));
+	
 	}
+	
+	
 }
 	

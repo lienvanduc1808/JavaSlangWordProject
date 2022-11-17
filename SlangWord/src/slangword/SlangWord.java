@@ -26,8 +26,11 @@ public class SlangWord {
 	}
     public String get(String word) {
         return slangWords.get(word);
+       
+        
     }
-
+    
+    
 	
 
 
