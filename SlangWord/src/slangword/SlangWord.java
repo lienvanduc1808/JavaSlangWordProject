@@ -1,24 +1,38 @@
 package slangword;
 
+import java.util.Scanner;
+
 import java.util.TreeMap;
+
 
 public class SlangWord {
 	public TreeMap<String, String > slangWords;
 
+	
+	public int size;
+
 	public SlangWord() {
 		
 		slangWords = new TreeMap<String,String>();
+		size =0;
 	}
 
 	public void add(String key , String value) {
-		// TODO Auto-generated method stub
-		if(!slangWords.containsKey(key)) {
+		
+		
 			slangWords.put(key, value);
-		}
-	}
-	public void getLine() {
+			size++;
 		
 	}
+    public String get(String word) {
+        return slangWords.get(word);
+    }
+
+	
+
+
+	
 	
 	
 }
+
