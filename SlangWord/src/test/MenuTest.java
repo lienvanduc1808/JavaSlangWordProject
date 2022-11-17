@@ -50,6 +50,8 @@ public class MenuTest {
 			break;
 		case 2:
 			menuFunction.searchDefintion();
+		case 3:
+			menuFunction.viewHistorySlangWord();
 
 		default:
 			break;
