@@ -29,7 +29,10 @@ public class SlangWord {
        
         
     }
-    
+    public void remove(String word) {
+        slangWords.remove(word);
+        size--;
+    }
     
 	
 

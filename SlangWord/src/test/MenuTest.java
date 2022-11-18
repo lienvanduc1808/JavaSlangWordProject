@@ -50,13 +50,21 @@ public class MenuTest {
 			break;
 		case 2:
 			menuFunction.searchDefintion();
+			break;
 		case 3:
 			menuFunction.viewHistorySlangWord();
-
+			break;
+		case 4:
+			menuFunction.addNewSlangWord();
+			break;
+		case 5:
+			menuFunction.editSlangWord();
+			break;
 		default:
+			
 			break;
 		}
-		
+			
 		}
 		while(choose != 0 );
 	}

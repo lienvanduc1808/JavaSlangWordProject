@@ -1,4 +1,7 @@
 package menufunction;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -54,6 +57,64 @@ public class MenuFunction {
                 System.out.println( word );
                 
             }
+		}
+	}
+	
+	public void addNewSlangWord() {
+			Scanner sc = new Scanner(System.in);
+			System.out.print("Nhập slang word : ");
+	        BufferedReader bufferReader;
+	        try {
+	            bufferReader = new BufferedReader(new InputStreamReader(System.in, "utf-8"));
+	            String slangWord = bufferReader.readLine();
+	            System.out.print("Nhập definition : ");
+	            String definition = bufferReader.readLine();
+	            for(Map.Entry<String,String> entry : this.fileHandle.slangWordList.slangWords.entrySet() ) {
+	            	String key = entry.getKey();
+	            	if(slangWord.equalsIgnoreCase(key)) {
+	            		System.out.println("Slang Word đã tồn tại !");
+	            		System.out.println("Overwrite slang word . Nhấn 1");
+			            System.out.println("Duplicate slang word . Nhấn 2 ");
+			            System.out.println("Mời lựa chọn : ");
+			            int choose;
+			            choose = Integer.parseInt(sc.nextLine());
+			            if(choose ==1) {
+			            	this.fileHandle.slangWordList.add(slangWord, definition);
+			            	System.out.println("Overwrite thành công !");
+			            }
+			            if(choose ==2) {
+			           
+			            	this.fileHandle.slangWordList.slangWords.put(slangWord, definition);
+			            	System.out.println("Duplicate thành công ! ");
+			            }
+	            	}
+	            	
+	            }
+	            
+	           
+	           
+	  			 
+	        
+	        } catch (IOException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        }
+		
+		
+	}
+	public void editSlangWord() {
+		String slangWord;
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Nhập slang word bạn muốn edit : ");
+		slangWord = sc.nextLine();
+		if(this.fileHandle.slangWordList.slangWords.containsKey(slangWord)) {
+			System.out.println("Nhập definition bạn muốn edit : ");
+			String definition = sc.nextLine();
+			this.fileHandle.slangWordList.add(slangWord, definition);
+			System.out.println("Edit thành công !");
+		}
+		else {
+			System.out.println("Không có slang word nào được tìm thấy trong từ điển  !");
 		}
 	}
 }
