@@ -9,7 +9,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 import slangword.SlangWord;
@@ -39,7 +42,9 @@ public class FileHandle {
 					if(!(line.contains("`"))) {
 						continue; 
 					}
+					
 					String[] params = line.split("`");
+					
 					slangWordList.add(params[0], params[1]);
 					
 					
@@ -84,6 +89,54 @@ public class FileHandle {
 		
 		
 
+	}
+	public void saveFileData(String fileName) {
+		System.out.println("Save File!!!");
+		
+		FileOutputStream fos= null;
+		
+		try {
+			
+			fos = new FileOutputStream(fileName);
+			try {
+				new FileOutputStream(fileName).close();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			for (String key : this.slangWordList.slangWords.keySet()) {
+				String line = key+"`"+ this.slangWordList.get(key)+"\n";
+				try {
+					byte[] b = line.getBytes("utf8");
+					try {
+					
+						fos.write(b);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if(fos!=null) {
+				try {
+					fos.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		
+		
 	}
 	public String getas(String word) {
 		

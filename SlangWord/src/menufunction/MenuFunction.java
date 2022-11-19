@@ -20,6 +20,9 @@ public class MenuFunction {
 		fileHandle.LoadFileData("slang.txt");
 		
 	}
+	public void saveFile() {
+		fileHandle.saveFileData("slang.txt");
+	}
 	public void searchWord() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Nhập từ muốn tìm : ");
@@ -63,42 +66,42 @@ public class MenuFunction {
 	public void addNewSlangWord() {
 			Scanner sc = new Scanner(System.in);
 			System.out.print("Nhập slang word : ");
-	        BufferedReader bufferReader;
-	        try {
-	            bufferReader = new BufferedReader(new InputStreamReader(System.in, "utf-8"));
-	            String slangWord = bufferReader.readLine();
-	            System.out.print("Nhập definition : ");
-	            String definition = bufferReader.readLine();
-	            for(Map.Entry<String,String> entry : this.fileHandle.slangWordList.slangWords.entrySet() ) {
-	            	String key = entry.getKey();
-	            	if(slangWord.equalsIgnoreCase(key)) {
-	            		System.out.println("Slang Word đã tồn tại !");
-	            		System.out.println("Overwrite slang word . Nhấn 1");
-			            System.out.println("Duplicate slang word . Nhấn 2 ");
-			            System.out.println("Mời lựa chọn : ");
-			            int choose;
-			            choose = Integer.parseInt(sc.nextLine());
-			            if(choose ==1) {
-			            	this.fileHandle.slangWordList.add(slangWord, definition);
-			            	System.out.println("Overwrite thành công !");
-			            }
-			            if(choose ==2) {
-			           
-			            	this.fileHandle.slangWordList.slangWords.put(slangWord, definition);
-			            	System.out.println("Duplicate thành công ! ");
-			            }
-	            	}
-	            	
-	            }
-	            
-	           
-	           
-	  			 
-	        
-	        } catch (IOException e) {
-	            // TODO Auto-generated catch block
-	            e.printStackTrace();
-	        }
+	       
+	       
+	        String slangWord;
+			slangWord = sc.nextLine();
+			System.out.print("Nhập definition : ");
+			String definition;
+			definition = sc.nextLine();
+			
+		
+				if(this.fileHandle.slangWordList.slangWords.containsKey(slangWord)) {
+					System.out.println("Slang Word đã tồn tại !");
+					System.out.println("Overwrite slang word . Nhấn 1");
+			        System.out.println("Duplicate slang word . Nhấn 2 ");
+			        System.out.println("Mời lựa chọn : ");
+			        int choose;
+			        choose = Integer.parseInt(sc.nextLine());
+			        if(choose ==1) {
+			        	
+			        	this.fileHandle.slangWordList.add(slangWord, definition);
+			        	System.out.println("Overwrite thành công !");
+			        }
+			        if(choose ==2) {
+			       
+			        	String new_definition = this.fileHandle.slangWordList.slangWords.get(slangWord)+"| "+definition;
+			        	this.fileHandle.slangWordList.add(slangWord, new_definition);
+			        	System.out.println("Duplicate thành công ! ");
+			        }
+			        
+				
+				
+			}
+				else {
+		        	this.fileHandle.slangWordList.add(slangWord, definition);
+		        	System.out.println("Them thành công !");
+		        }
+			
 		
 		
 	}
@@ -116,5 +119,36 @@ public class MenuFunction {
 		else {
 			System.out.println("Không có slang word nào được tìm thấy trong từ điển  !");
 		}
+	}
+	
+	public void deleteSlangWord() {
+		String slangWord;
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Nhập slang word bạn muốn xóa  : ");
+		slangWord = sc.nextLine();
+		if(this.fileHandle.slangWordList.slangWords.containsKey(slangWord)) {
+			
+			System.out.println("Xác nhận xóa . Nhấn 1");
+			System.out.println("Hủy bỏ . Nhấn 0");
+			int choose;
+			System.out.println("Mời lựa chọn ");
+			choose = Integer.parseInt(sc.nextLine());
+			if(choose == 1) {
+				this.fileHandle.slangWordList.slangWords.remove(slangWord);
+				System.out.println("Xóa thành công !");
+			}
+			else if(choose ==0){
+				System.out.println("Hủy Xóa ");
+			}
+		
+		}
+		else {
+			System.out.println("Không có slang word nào được tìm thấy trong từ điển  !");
+		}
+	}
+	
+	public void reset() {
+		this.fileHandle.LoadFileData("slang_goc.txt");
+		System.out.println("Reset thành công !");
 	}
 }

@@ -20,6 +20,7 @@ public class MenuTest {
 		
 		menu();
 		
+		menuFunction.saveFile();
 		
 		
 		
@@ -60,8 +61,13 @@ public class MenuTest {
 		case 5:
 			menuFunction.editSlangWord();
 			break;
+		case 6:
+			menuFunction.deleteSlangWord();
+			break;
+		case 7:
+			menuFunction.reset();
+			break;
 		default:
-			
 			break;
 		}
 			
