@@ -20,7 +20,7 @@ public class MenuTest {
 		
 		menu();
 		
-		menuFunction.saveFile();
+		
 		
 		
 		
@@ -40,8 +40,8 @@ public class MenuTest {
 		System.out.println("6.  Delete 1 slang word.");
 		System.out.println("7.  Reset danh sách slang words gốc.");
 		System.out.println("8.  Random 1 slang word .");
-		System.out.println("9.  Đố vui (Random )");
-		System.out.println("10. Đố vui (Definition).");
+		System.out.println("9.  Đố vui (Random slang word )");
+		System.out.println("10. Đố vui (Random Definition).");
 		System.out.println("0. Thoát khỏi chương trình.");
 		System.out.println("Mời lựa chọn : ");	
 		choose = Integer.parseInt(sc.nextLine());
@@ -66,6 +66,15 @@ public class MenuTest {
 			break;
 		case 7:
 			menuFunction.reset();
+			break;
+		case 8:
+			menuFunction.randomSlangWord();
+			break;
+		case 9:
+			menuFunction.quizRandomSlangWord();
+			break;
+		case 10:
+			menuFunction.quizRandomDefinition();
 			break;
 		default:
 			break;
